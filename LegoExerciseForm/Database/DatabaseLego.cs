@@ -33,7 +33,7 @@ namespace LegoExerciseForm.Database
         public List<Vendor> GetAllVendors()
         {
             List<Vendor> vendors = new List<Vendor>();
-            Vendor vendor = new Vendor();
+            
             var selectCmd = _connection.CreateCommand();
             selectCmd.CommandText = "SELECT * FROM Vendors";
 
@@ -41,11 +41,13 @@ namespace LegoExerciseForm.Database
             {
                 while (reader.Read())
                 {
+                    Vendor vendor = new Vendor();
                     vendor.ID = reader.GetInt32(0);
                     vendor.Name = reader.GetString(1);
                     vendor.PostalCode = reader.GetInt32(2);
                     vendor.Address = reader.GetString(3);
-                    vendor.ECOFriendly = Convert.ToBoolean(reader.GetInt32(4));
+                    vendor.ContactPerson = reader.GetString(4);
+                    vendor.ECOFriendly = Convert.ToBoolean(reader.GetInt32(5));
 
                     vendors.Add(vendor);
                 }
@@ -56,7 +58,7 @@ namespace LegoExerciseForm.Database
         public List<Material> GetAllMaterials()
         {
             List<Material> materials = new List<Material>();
-            Material material = new Material();
+            
             var selectCmd = _connection.CreateCommand();
             selectCmd.CommandText = "SELECT * FROM Materials";
 
@@ -64,6 +66,7 @@ namespace LegoExerciseForm.Database
             {
                 while (reader.Read())
                 {
+                    Material material = new Material();
                     material.ID = reader.GetInt32(0);
                     material.Name = reader.GetString(1);
                     material.Color = reader.GetString(2);

@@ -14,11 +14,11 @@ namespace LegoExerciseForm
         static void Main()
         {
             DatabaseLego db = new DatabaseLego();
-            CacheLego cacheLego = new CacheLego(db.GetAllVendors(),db.GetAllMaterials());
+            CacheLego cacheLego = new CacheLego(db.GetAllVendors(), db.GetAllMaterials());
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1(cacheLego));
         }
     }
 }

@@ -21,10 +21,12 @@ namespace Indexer.Database
 
             _connection.Open();
 
+            Execute("DROP TABLE IF EXISTS Materials");
+
             Execute("DROP TABLE IF EXISTS Vendors");
 
-            Execute("DROP TABLE IF EXISTS Materials");
-            Execute("CREATE TABLE Vendors(id INTEGER PRIMARY KEY, name VARCHAR(30), postalCode INTEGER, address VARCHAR(50), ECOFriendly INTEGER)");
+            
+            Execute("CREATE TABLE Vendors(id INTEGER PRIMARY KEY, name VARCHAR(30), postalCode INTEGER, address VARCHAR(50), contactPerson VARCHAR(50),ECOFriendly INTEGER)");
 
             Execute("CREATE TABLE Materials(id INTEGER, name VARCHAR(50), color VARCHAR(50), pricePerUnit INTEGER, currency VARCHAR(50), unit VARCHAR(50), meltingPoint Integer, tempUnit VARCHAR(50), deliveryTimeDays Integer, vendorId INTEGER, "
                   + "FOREIGN KEY (vendorId) REFERENCES Vendors(id))");
@@ -43,11 +45,15 @@ namespace Indexer.Database
             {
                 var command = _connection.CreateCommand();
                 command.CommandText =
-                @"INSERT INTO Vendors(id, name, postalCode, address, ECOFriendly) VALUES(@id,@name,@postalCode,@address,@ECOFriendly)";
+                @"INSERT INTO Vendors(id, name, postalCode, address, contactPerson,ECOFriendly) VALUES(@id,@name,@postalCode,@address,@contactPerson,@ECOFriendly)";
 
                 var paramECOFriendly = command.CreateParameter();
                 paramECOFriendly.ParameterName = "ECOFriendly";
                 command.Parameters.Add(paramECOFriendly);
+
+                var paramContact = command.CreateParameter();
+                paramContact.ParameterName = "contactPerson";
+                command.Parameters.Add(paramContact);
 
                 var paramAddress = command.CreateParameter();
                 paramAddress.ParameterName = "address";
@@ -70,6 +76,7 @@ namespace Indexer.Database
                 foreach (var p in root.Vendors)
                 {
                     paramECOFriendly.Value = p.ECOFriendly;
+                    paramContact.Value = p.ContactPerson;
                     paramAddress.Value = p.Address;
                     paramPostalCode.Value = p.PostalCode;
                     paramName.Value = p.Name;
