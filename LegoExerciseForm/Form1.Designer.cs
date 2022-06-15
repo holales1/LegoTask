@@ -1,6 +1,6 @@
 ﻿namespace LegoExerciseForm
 {
-    partial class Form1
+    partial class FormSorting
     {
         /// <summary>
         ///  Required designer variable.
@@ -32,6 +32,8 @@
             this.textBoxVendors = new System.Windows.Forms.TextBox();
             this.dataGridMaterials = new System.Windows.Forms.DataGridView();
             this.textBoxMaterials = new System.Windows.Forms.TextBox();
+            this.buttonCheapestMaterials = new System.Windows.Forms.Button();
+            this.buttonFindBest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVendors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMaterials)).BeginInit();
             this.SuspendLayout();
@@ -81,18 +83,39 @@
             this.textBoxMaterials.TabIndex = 4;
             this.textBoxMaterials.Text = "Materials";
             // 
-            // Form1
+            // buttonCheapestMaterials
+            // 
+            this.buttonCheapestMaterials.Location = new System.Drawing.Point(659, 41);
+            this.buttonCheapestMaterials.Name = "buttonCheapestMaterials";
+            this.buttonCheapestMaterials.Size = new System.Drawing.Size(139, 23);
+            this.buttonCheapestMaterials.TabIndex = 5;
+            this.buttonCheapestMaterials.Text = "Find cheapest materials";
+            this.buttonCheapestMaterials.UseVisualStyleBackColor = true;
+            this.buttonCheapestMaterials.Click += new System.EventHandler(this.buttonCheapestMaterials_Click);
+            // 
+            // buttonFindBest
+            // 
+            this.buttonFindBest.Location = new System.Drawing.Point(659, 137);
+            this.buttonFindBest.Name = "buttonFindBest";
+            this.buttonFindBest.Size = new System.Drawing.Size(139, 23);
+            this.buttonFindBest.TabIndex = 6;
+            this.buttonFindBest.Text = "Find Best PMMA";
+            this.buttonFindBest.UseVisualStyleBackColor = true;
+            this.buttonFindBest.Click += new System.EventHandler(this.buttonFindBest_Click);
+            // 
+            // FormSorting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(964, 491);
+            this.Controls.Add(this.buttonFindBest);
+            this.Controls.Add(this.buttonCheapestMaterials);
             this.Controls.Add(this.textBoxMaterials);
             this.Controls.Add(this.dataGridMaterials);
             this.Controls.Add(this.textBoxVendors);
             this.Controls.Add(this.dataGridVendors);
-            this.Name = "Form1";
+            this.Name = "FormSorting";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVendors)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMaterials)).EndInit();
             this.ResumeLayout(false);
@@ -106,5 +129,7 @@
         private System.Windows.Forms.TextBox textBoxVendors;
         private System.Windows.Forms.DataGridView dataGridMaterials;
         private System.Windows.Forms.TextBox textBoxMaterials;
+        private System.Windows.Forms.Button buttonCheapestMaterials;
+        private System.Windows.Forms.Button buttonFindBest;
     }
 }

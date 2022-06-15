@@ -10,16 +10,18 @@ using System.Windows.Forms;
 
 namespace LegoExerciseForm
 {
-    public partial class Form1 : Form
+    public partial class FormSorting : Form
     {
+        private DatabaseLego _db;
         private CacheLego _cacheLego;
         private List<Vendor> vendors;
         private List<Material> materials;
         private bool sortAscendingVendors = false;
         private bool sortAscendingMaterials = false;
-        public Form1(CacheLego cacheLego)
+        public FormSorting(CacheLego cacheLego, DatabaseLego db)
         {
             InitializeComponent();
+            _db = db;
             _cacheLego = cacheLego;
             vendors = _cacheLego.GetVendors();
             materials = _cacheLego.GetMaterials();
@@ -29,15 +31,18 @@ namespace LegoExerciseForm
             
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void dataGridVendors_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridVendors.CurrentRow.Selected = true;
-            var materialsFiltered = materials;
+            var valueId = dataGridVendors.SelectedRows[0].Cells[0].Value.ToString();
+            if (valueId==null)
+            {
+                return;
+            }
+
+            DataGridViewRow row = dataGridVendors.Rows[e.RowIndex];
+            var materialsFiltered = materials.Where(c => c.VendorID ==Int32.Parse(valueId)).ToList();
+
             var bindingList = new BindingList<Material>(materialsFiltered);
             var source = new BindingSource(bindingList, null);
             dataGridMaterials.DataSource = source;
@@ -55,11 +60,25 @@ namespace LegoExerciseForm
 
         private void dataGridMaterials_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+
             if (sortAscendingMaterials == false)
                 dataGridMaterials.DataSource = new BindingList<Material>(materials.AsQueryable().OrderBy(dataGridMaterials.Columns[e.ColumnIndex].DataPropertyName).ToList());
             else
-                dataGridVendors.DataSource = new BindingList<Material>(materials.AsQueryable().OrderBy(dataGridMaterials.Columns[e.ColumnIndex].DataPropertyName).Reverse().ToList());
+                dataGridMaterials.DataSource = new BindingList<Material>(materials.AsQueryable().OrderBy(dataGridMaterials.Columns[e.ColumnIndex].DataPropertyName).Reverse().ToList());
             sortAscendingMaterials = !sortAscendingMaterials;
+        }
+
+        private void buttonCheapestMaterials_Click(object sender, EventArgs e)
+        {
+
+            FormCheapestMaterial formCheapestMaterial = new FormCheapestMaterial(_db);
+            formCheapestMaterial.ShowDialog();
+        }
+
+        private void buttonFindBest_Click(object sender, EventArgs e)
+        {
+            FormBestPMMA formBestPMMA = new FormBestPMMA(_db);
+            formBestPMMA.ShowDialog();
         }
     }
 }
