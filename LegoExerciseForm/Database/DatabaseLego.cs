@@ -15,7 +15,7 @@ namespace LegoExerciseForm.Database
 
             connectionStringBuilder.Mode = SqliteOpenMode.ReadWriteCreate;
 
-            connectionStringBuilder.DataSource = "./LegoDB.db";
+            connectionStringBuilder.DataSource = "../../../../LegoDB.db";
 
 
             _connection = new SqliteConnection(connectionStringBuilder.ConnectionString);
