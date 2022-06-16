@@ -16,6 +16,7 @@ namespace LegoExerciseForm
         private CacheLego _cacheLego;
         private List<Vendor> vendors;
         private List<Material> materials;
+        private List<Material> materialsFiltered = new List<Material>();
         private bool sortAscendingVendors = false;
         private bool sortAscendingMaterials = false;
         public FormSorting(CacheLego cacheLego, DatabaseLego db)
@@ -39,9 +40,13 @@ namespace LegoExerciseForm
             {
                 return;
             }
+            if (e.RowIndex<0)
+            {
+                return;
+            }
 
             DataGridViewRow row = dataGridVendors.Rows[e.RowIndex];
-            var materialsFiltered = materials.Where(c => c.VendorID ==Int32.Parse(valueId)).ToList();
+            materialsFiltered = materials.Where(c => c.VendorID ==Int32.Parse(valueId)).ToList();
 
             var bindingList = new BindingList<Material>(materialsFiltered);
             var source = new BindingSource(bindingList, null);
@@ -62,9 +67,9 @@ namespace LegoExerciseForm
         {
 
             if (sortAscendingMaterials == false)
-                dataGridMaterials.DataSource = new BindingList<Material>(materials.AsQueryable().OrderBy(dataGridMaterials.Columns[e.ColumnIndex].DataPropertyName).ToList());
+                dataGridMaterials.DataSource = new BindingList<Material>(materialsFiltered.AsQueryable().OrderBy(dataGridMaterials.Columns[e.ColumnIndex].DataPropertyName).ToList());
             else
-                dataGridMaterials.DataSource = new BindingList<Material>(materials.AsQueryable().OrderBy(dataGridMaterials.Columns[e.ColumnIndex].DataPropertyName).Reverse().ToList());
+                dataGridMaterials.DataSource = new BindingList<Material>(materialsFiltered.AsQueryable().OrderBy(dataGridMaterials.Columns[e.ColumnIndex].DataPropertyName).Reverse().ToList());
             sortAscendingMaterials = !sortAscendingMaterials;
         }
 
