@@ -20,3 +20,12 @@ This part has a small front end made with windows forms to show all the tasks wo
 This will show a form printing the data of the materials that fulfill he asked characteristics(name:PMMA and melting point between 200C and 300C). When the user clicks the button find best it will sort them by a simple criteria that i create myself
 
 ![image](https://user-images.githubusercontent.com/55183635/174131426-27a74f20-14e4-46d0-90a6-94aa2254cd3a.png)
+
+**Any issues with the data model, and how can we improve it?** Colours could be stored in a separate model so we can reffer to them with a foreign key.
+![image](https://user-images.githubusercontent.com/55183635/174430839-4107069f-3f76-4b47-a0df-1c57ba1c94ba.png)
+
+Create an extra table to makea many to many relationship, so there is no duplication of the material name.
+![image](https://user-images.githubusercontent.com/55183635/174430750-6fe4114a-8f99-40fa-b201-c80ce16f3317.png)
+
+**Any other filter options you might think that might be useful?** Whether the material comes in liquid or solid state or even in powder form.
+Specific storage conditions (temperature, type of packaging, size of packaging).
