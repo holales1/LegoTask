@@ -25,7 +25,7 @@ This will show a form printing the data of the materials that fulfill he asked c
 
 ![image](https://user-images.githubusercontent.com/55183635/174430839-4107069f-3f76-4b47-a0df-1c57ba1c94ba.png)
 
-Create an extra table to makea many to many relationship, so there is no duplication of the material name.
+Create an extra table to make a many to many relationship, so there is no duplication of the material name.
 ![image](https://user-images.githubusercontent.com/55183635/174430750-6fe4114a-8f99-40fa-b201-c80ce16f3317.png)
 
 **Any other filter options you might think that might be useful?** Whether the material comes in liquid or solid state or even in powder form.
