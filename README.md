@@ -22,6 +22,7 @@ This will show a form printing the data of the materials that fulfill he asked c
 ![image](https://user-images.githubusercontent.com/55183635/174131426-27a74f20-14e4-46d0-90a6-94aa2254cd3a.png)
 
 **Any issues with the data model, and how can we improve it?** Colours could be stored in a separate model so we can reffer to them with a foreign key.
+
 ![image](https://user-images.githubusercontent.com/55183635/174430839-4107069f-3f76-4b47-a0df-1c57ba1c94ba.png)
 
 Create an extra table to makea many to many relationship, so there is no duplication of the material name.
