@@ -1,6 +1,6 @@
 # Lego task
 ## Indexer
-This part takes care of reading the json, convert all units to the same unit(Example:Farenheit to Celsius) and insert everything on a SQLite database
+This part takes care of reading the json, convert all units to the same unit(Example:Farenheit to Celsius) and insert everything on a SQLite database. To do all of this you only need to run it and thats all.
 ## Lego exercise form
 This part has a small front end made with windows forms to show all the tasks working.
 
